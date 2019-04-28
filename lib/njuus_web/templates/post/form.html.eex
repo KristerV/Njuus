@@ -5,21 +5,17 @@
     </div>
   <% end %>
 
-  <%= label f, :body %>
-  <%= text_input f, :body %>
-  <%= error_tag f, :body %>
-
-  <%= label f, :link %>
-  <%= text_input f, :link %>
-  <%= error_tag f, :link %>
-
-  <%= label f, :title %>
+  <%= label f, "Pealkiri" %>
   <%= text_input f, :title %>
   <%= error_tag f, :title %>
 
-  <%= label f, :votes %>
-  <%= multiple_select f, :votes, ["1": 1, "2": 2] %>
-  <%= error_tag f, :votes %>
+  <%= label f, "Tekst" %>
+  <%= text_input f, :body %>
+  <%= error_tag f, :body %>
+
+  <%= label f, "Link" %>
+  <%= text_input f, :link %>
+  <%= error_tag f, :link %>
 
   <div>
     <%= submit "Save" %>

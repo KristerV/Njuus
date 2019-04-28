@@ -6,7 +6,7 @@ defmodule Njuus.Core.Post do
     field :body, :string
     field :link, :string
     field :title, :string
-    field :votes, {:array, :integer}
+    field :votes, {:array, :integer}, default: [1]
 
     timestamps()
   end
