@@ -21,9 +21,8 @@ defmodule Njuus.Core.Post do
 
   def validate_required_one_of_two(changeset, first, second) do
     firstVal = get_field(changeset, first) |> (&(&1 && &1 != "")).()
-    |> IO.inspect
     secondVal = get_field(changeset, second) |> (&(&1 && &1 != "")).()
-    |> IO.inspect
+
     case {firstVal, secondVal} do
       {nil, nil} -> add_error(changeset, first, "Täida kas link või tekst.")
       {true, true} -> add_error(changeset, first, "Täida kas link või tekst, aga mitte mõlemad.")
@@ -31,5 +30,4 @@ defmodule Njuus.Core.Post do
       {nil, true} -> changeset
     end
   end
-
 end
