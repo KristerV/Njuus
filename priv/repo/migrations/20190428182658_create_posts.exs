@@ -3,9 +3,10 @@ defmodule Njuus.Repo.Migrations.CreatePosts do
 
   def change do
     create table(:posts) do
-      add :body, :string
+      add :body, :text
       add :link, :string
-      add :title, :string
+      add :title, :text
+      add :image, :string
       add :votes, {:array, :integer}
 
       timestamps()

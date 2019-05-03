@@ -10,6 +10,8 @@ defmodule Njuus.Application do
     children = [
       # Start the Ecto repository
       Njuus.Repo,
+      # Fetch feeds
+      Njuus.Scheduler,
       # Start the endpoint when the application starts
       NjuusWeb.Endpoint
       # Starts a worker by calling: Njuus.Worker.start_link(arg)

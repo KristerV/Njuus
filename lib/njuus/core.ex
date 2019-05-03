@@ -55,6 +55,16 @@ defmodule Njuus.Core do
     |> Repo.insert()
   end
 
+  def create_post_if_not_exists(attrs) do
+    post = Repo.get_by(Post, link: attrs.link) |> IO.inspect()
+
+    if post == nil do
+      create_post(attrs)
+    else
+      post
+    end
+  end
+
   @doc """
   Updates a post.
 
