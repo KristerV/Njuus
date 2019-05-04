@@ -7,11 +7,16 @@ defmodule Njuus.Feeds do
     {:ok, feed, _} = FeederEx.parse(body)
 
     for entry <- feed.entries do
+      IO.inspect(entry)
+
       post = %{
         body: entry.summary,
         link: entry.link,
         title: entry.title,
-        image: entry.enclosure.url
+        image: entry.enclosure.url,
+        categories: entry.categories,
+        date: entry.updated,
+        source: entry.author
       }
 
       Task.start(Njuus.Core, :create_post_if_not_exists, [post])
