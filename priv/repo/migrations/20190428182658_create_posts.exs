@@ -3,6 +3,7 @@ defmodule Njuus.Repo.Migrations.CreatePosts do
 
   def change do
     create table(:posts) do
+      add :provider, :string
       add :body, :text
       add :link, :string
       add :title, :text

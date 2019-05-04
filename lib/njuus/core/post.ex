@@ -3,6 +3,7 @@ defmodule Njuus.Core.Post do
   import Ecto.Changeset
 
   schema "posts" do
+    field :provider, :string
     field :body, :string
     field :link, :string
     field :title, :string
