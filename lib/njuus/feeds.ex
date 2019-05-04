@@ -20,8 +20,6 @@ defmodule Njuus.Feeds do
     {:ok, feed, _} = FeederEx.parse(body)
 
     for entry <- feed.entries do
-      IO.inspect(entry)
-
       post = %{
         provider: name,
         body: entry.summary,
@@ -29,7 +27,7 @@ defmodule Njuus.Feeds do
         title: entry.title,
         image: if(entry.enclosure, do: entry.enclosure.url, else: entry.image),
         categories: entry.categories,
-        date: entry.updated,
+        datetime_str: entry.updated,
         source: entry.author
       }
 

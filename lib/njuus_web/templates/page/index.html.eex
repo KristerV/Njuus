@@ -1,7 +1,10 @@
 <h1>Listing Posts</h1>
 
 <%= for post <- @posts do %>
-  <p><a target="_blank" href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>"><%= post.title %></a></p>
+  <p><%= post.provider %> <a target="_blank" href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>"><%= post.title %></a>
+    <br/><sub><%= post.categories %></sub>
+    <br/><sub><%= post.datetime_str %></sub>
+    </p>
 <% end %>
 
 <span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>

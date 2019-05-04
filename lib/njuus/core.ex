@@ -18,7 +18,10 @@ defmodule Njuus.Core do
 
   """
   def list_posts do
-    Repo.all(Post)
+    from(p in Post,
+      order_by: [desc: p.datetime_str]
+    )
+    |> Repo.all()
   end
 
   @doc """

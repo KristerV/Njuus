@@ -8,8 +8,8 @@ defmodule Njuus.Core.Post do
     field :link, :string
     field :title, :string
     field :image, :string
-    field :categories, {:array, :string}
-    field :date, :date
+    field :categories, {:array, :string}, default: []
+    field :datetime_str, :string
     field :source, :string
     field :votes, {:array, :integer}, default: [1]
 
@@ -19,7 +19,17 @@ defmodule Njuus.Core.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:body, :link, :title, :votes, :image])
+    |> cast(attrs, [
+      :provider,
+      :body,
+      :link,
+      :title,
+      :image,
+      :categories,
+      :datetime_str,
+      :source,
+      :votes
+    ])
     |> validate_required([:title, :votes])
     |> validate_required_one(:body, :link)
   end

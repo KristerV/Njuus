@@ -8,8 +8,8 @@ defmodule Njuus.Repo.Migrations.CreatePosts do
       add :link, :string
       add :title, :text
       add :image, :string
-      add :categories, :string
-      add :date, :date
+      add :categories, {:array, :string}
+      add :datetime_str, :string
       add :source, :string
       add :votes, {:array, :integer}
 
