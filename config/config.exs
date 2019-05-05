@@ -27,9 +27,9 @@ config :phoenix, :json_library, Jason
 
 config :njuus, Njuus.Scheduler,
   jobs: [
-    {"@reboot", fn -> Njuus.Feeds.start() end},
+    {"@reboot", {Njuus.Feeds, :start, []}},
     # Every 15 minutes
-    {"*/15 * * * *", fn -> Njuus.Feeds.start() end}
+    {"*/15 * * * *", {Njuus.Feeds, :start, []}}
   ]
 
 # Import environment specific config. This must remain at the bottom

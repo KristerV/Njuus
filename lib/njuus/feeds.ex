@@ -2,10 +2,10 @@ alias Njuus.Core.Post
 
 defmodule Njuus.Feeds do
   def start() do
-    case File.read("feed_list.csv") do
+    case File.read(Application.app_dir(:njuus, "priv/feed_list.csv")) do
       {:ok, body} -> body
-      {:error, :enoent} -> raise "feed_list.csv doesn't exist!"
-      {:error, reason} -> raise "feed_list.csv Error: #{reason}"
+      {:error, :enoent} -> raise "priv/feed_list.csv doesn't exist!"
+      {:error, reason} -> raise "priv/feed_list.csv Error: #{reason}"
     end
     |> String.split("\n")
     # ignore comment rows

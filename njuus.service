@@ -1,0 +1,22 @@
+[Unit]
+Description=Njuus
+After=network.target
+
+[Service]
+Type=forking
+User=web
+Group=web
+WorkingDirectory=/home/web/njuus
+ExecStart=/home/web/njuus/bin/njuus start
+ExecStop=/home/web/njuus/bin/njuus stop
+PIDFile=/home/web/njuus/njuus.pid
+Restart=on-failure
+RestartSec=5
+Environment=PORT=4000
+Environment=LANG=en_US.UTF-8
+Environment=PIDFILE=/home/appuser/njuus/njuus.pid
+SyslogIdentifier=njuus
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target

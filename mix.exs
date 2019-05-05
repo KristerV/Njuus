@@ -43,8 +43,9 @@ defmodule Njuus.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:quantum, "~> 2.3"},
-      {:feeder_ex, "~> 1.1"},
+      {:feeder_ex, git: "https://github.com/KristerV/feeder_ex.git"},
       {:httpoison, "~> 1.4"},
+      {:distillery, "~> 2.0"},
       {:plug_cowboy, "~> 2.0"}
     ]
   end
