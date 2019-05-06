@@ -20,7 +20,7 @@ defmodule Njuus.MixProject do
   def application do
     [
       mod: {Njuus.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :timex]
     ]
   end
 
@@ -46,6 +46,7 @@ defmodule Njuus.MixProject do
       {:feeder_ex, git: "https://github.com/KristerV/feeder_ex.git"},
       {:httpoison, "~> 1.4"},
       {:distillery, "~> 2.0"},
+      {:timex, "~> 3.0"},
       {:plug_cowboy, "~> 2.0"}
     ]
   end

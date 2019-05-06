@@ -12,4 +12,10 @@ defmodule Utils do
       true -> "not sure"
     end
   end
+
+  def parseDate(str) do
+    str
+    |> String.replace("GMT", "+0000")
+    |> Timex.parse!("{RFC1123}")
+  end
 end

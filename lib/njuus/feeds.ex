@@ -28,6 +28,7 @@ defmodule Njuus.Feeds do
         image: if(entry.enclosure, do: entry.enclosure.url, else: entry.image),
         categories: entry.categories,
         datetime_str: entry.updated,
+        datetime: Utils.parseDate(entry.updated),
         source: entry.author
       }
 
