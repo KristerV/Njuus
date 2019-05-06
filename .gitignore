@@ -41,3 +41,7 @@ erl_crash.dump
 /installer/deps
 
 # End of https://www.gitignore.io/api/elixir,phoenix
+
+.hex/
+.mix/
+rel/artifacts/

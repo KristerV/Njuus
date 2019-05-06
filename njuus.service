@@ -10,7 +10,7 @@ WorkingDirectory=/home/web/njuus
 ExecStart=/home/web/njuus/bin/njuus foreground
 Restart=on-failure
 RestartSec=5
-Environment=PORT=8080
+Environment=PORT=4000
 Environment=LANG=en_US.UTF-8
 SyslogIdentifier=njuus
 RemainAfterExit=no
