@@ -3,7 +3,7 @@
 <%= for post <- @posts do %>
   <p><%= post.provider %> <a target="_blank" href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>"><%= post.title %></a>
     <br/><sub><%= post.categories %></sub>
-    <br/><sub><%= post.datetime_str %></sub>
+    <br/><sub><%= post.datetime %></sub>
     </p>
 <% end %>
 

@@ -9,7 +9,7 @@ defmodule Njuus.Core.Post do
     field :title, :string
     field :image, :string
     field :categories, {:array, :string}, default: []
-    field :datetime_str, :string
+    field :datetime, :utc_datetime
     field :source, :string
     field :votes, {:array, :integer}, default: [1]
 
@@ -26,7 +26,7 @@ defmodule Njuus.Core.Post do
       :title,
       :image,
       :categories,
-      :datetime_str,
+      :datetime,
       :source,
       :votes
     ])

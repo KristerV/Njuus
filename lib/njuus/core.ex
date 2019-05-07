@@ -19,7 +19,7 @@ defmodule Njuus.Core do
   """
   def list_posts do
     from(p in Post,
-      order_by: [desc: p.datetime_str]
+      order_by: [desc: p.datetime]
     )
     |> Repo.all()
   end
