@@ -10,6 +10,7 @@ defmodule Njuus.Core.Post do
     field :image, :string
     field :categories, {:array, :string}, default: []
     field :datetime, :utc_datetime
+    field :icon, :string
     field :source, :string
     field :votes, {:array, :integer}, default: [1]
 
@@ -28,6 +29,7 @@ defmodule Njuus.Core.Post do
       :categories,
       :datetime,
       :source,
+      :icon,
       :votes
     ])
     |> validate_required([:title, :votes])

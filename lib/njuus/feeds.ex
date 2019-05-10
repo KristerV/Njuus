@@ -14,7 +14,7 @@ defmodule Njuus.Feeds do
     |> Enum.each(&Task.start(Njuus.Feeds, :fetch_posts, [&1]))
   end
 
-  def fetch_posts([name, url]) do
+  def fetch_posts([name, url, icon]) do
     HTTPoison.start()
     {:ok, %HTTPoison.Response{body: body}} = HTTPoison.get(url)
     {:ok, feed, _} = FeederEx.parse(body)
@@ -28,6 +28,7 @@ defmodule Njuus.Feeds do
         image: if(entry.enclosure, do: entry.enclosure.url, else: entry.image),
         categories: entry.categories,
         datetime: Utils.parseDate(entry.updated),
+        icon: icon,
         source: entry.author
       }
 

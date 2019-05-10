@@ -10,6 +10,7 @@ defmodule Njuus.Repo.Migrations.CreatePosts do
       add :image, :string
       add :categories, {:array, :string}
       add :datetime, :utc_datetime
+      add :icon, :string
       add :source, :string
       add :votes, {:array, :integer}
 
