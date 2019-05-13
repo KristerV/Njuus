@@ -1,0 +1,10 @@
+<h1>Teemad</h1>
+<%= for {key, catList} <- @categories do %>
+    <h2><%= key %></h2>
+    <p>
+    <%= for {cat, link} <- catList do %>
+        <a target="_blank" href="<%= link %>"><%= cat %></a>,
+    <% end %>
+    </p>
+<% end %>
+

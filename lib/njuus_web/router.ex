@@ -17,6 +17,7 @@ defmodule NjuusWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/admin", AdminController, :index
   end
 
   # Other scopes may use custom stacks.
