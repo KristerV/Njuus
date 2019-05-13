@@ -19,6 +19,6 @@ defmodule NjuusWeb.AdminController do
         end)
       end)
 
-    render(conn, "index.html", %{categories: categories, trackings: trackings})
+    render(conn, "index.html", %{categories: categories, trackings: trackings, posts: posts})
   end
 end
