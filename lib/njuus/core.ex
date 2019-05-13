@@ -7,6 +7,7 @@ defmodule Njuus.Core do
   alias Njuus.Repo
 
   alias Njuus.Core.Post
+  alias Njuus.Tracking
 
   @doc """
   Returns the list of posts.
@@ -21,6 +22,11 @@ defmodule Njuus.Core do
     from(p in Post,
       order_by: [desc: p.datetime]
     )
+    |> Repo.all()
+  end
+
+  def list_tracking do
+    from(p in Tracking)
     |> Repo.all()
   end
 

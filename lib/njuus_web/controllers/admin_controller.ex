@@ -5,6 +5,7 @@ defmodule NjuusWeb.AdminController do
   alias Njuus.Core.Post
 
   def index(conn, _params) do
+    trackings = Core.list_tracking()
     posts = Core.list_posts()
 
     categories =
@@ -18,6 +19,6 @@ defmodule NjuusWeb.AdminController do
         end)
       end)
 
-    render(conn, "index.html", categories: categories)
+    render(conn, "index.html", %{categories: categories, trackings: trackings})
   end
 end

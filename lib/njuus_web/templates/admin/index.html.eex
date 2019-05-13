@@ -1,3 +1,6 @@
+<h1>Stats</h1>
+<p>Total unique users: <%= length(Enum.uniq_by(@trackings, fn t -> t.sessionid end)) %></p>
+
 <h1>Teemad</h1>
 <%= for {key, catList} <- @categories do %>
     <h2><%= key %></h2>
