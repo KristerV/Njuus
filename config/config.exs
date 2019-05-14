@@ -32,20 +32,7 @@ config :njuus, Njuus.Scheduler,
     {"*/15 * * * *", {Njuus.Feeds, :start, []}}
   ]
 
-config :njuus, Njuus.Core.Categories,
-  pairs: %{
-    "uudised" => ["Eesti", "Uudised", "Teateid elust", "Kuum", "Liiklus"],
-    "poliitka" => ["Tööintervjuu"],
-    "sport" => [],
-    "tehnika" => [],
-    "majandus" => [],
-    "kultuur" => ["Kultuur"],
-    "maailm" => ["Maailm", "Välismaa"],
-    "elu" => ["Ilu", "Lapsed", "Sisustus ja disain", "Koolilaps"],
-    "tervis" => [],
-    "krüptoraha" => [],
-    "krimi" => ["Krimi"]
-  }
+import_config "categories.exs"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

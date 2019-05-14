@@ -27,4 +27,10 @@ defmodule Njuus.Core.Categories do
       inverse_keys()[cat] || feed[post.provider].category
     end)
   end
+
+  def has_category?(post) do
+    !!Enum.find_value(post.categories, fn cat ->
+      inverse_keys()[cat]
+    end)
+  end
 end

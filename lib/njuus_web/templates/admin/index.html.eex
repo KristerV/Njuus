@@ -2,7 +2,7 @@
 <p>Total unique users: <%= length(Enum.uniq_by(@trackings, fn t -> t.sessionid end)) %></p>
 <p>Total articles: <%= length(@posts) %></p>
 
-<h1>Teemad</h1>
+<h1>Lahterdamata teemad</h1>
 <%= for {key, catList} <- @categories do %>
     <h2><%= key %></h2>
     <p>

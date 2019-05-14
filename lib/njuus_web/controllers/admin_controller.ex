@@ -11,7 +11,7 @@ defmodule NjuusWeb.AdminController do
 
     categories =
       Enum.reduce(posts, %{}, fn post, acc ->
-        if Categories.find_category(post) === "muu" do
+        if !Categories.has_category?(post) do
           catLink =
             post.categories
             |> Enum.map(fn cat -> {cat, post.link} end)
@@ -23,7 +23,6 @@ defmodule NjuusWeb.AdminController do
           acc
         end
       end)
-      |> IO.inspect()
 
     render(conn, "index.html", %{categories: categories, trackings: trackings, posts: posts})
   end
