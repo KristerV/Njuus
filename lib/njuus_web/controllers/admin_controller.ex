@@ -7,7 +7,14 @@ defmodule NjuusWeb.AdminController do
 
   def index(conn, _params) do
     trackings = Core.list_tracking()
-    posts = Core.list_posts()
+
+    posts =
+      Core.list_posts()
+      |> Categories.categorize_posts()
+
+    cat_count =
+      Enum.reduce(posts, %{}, fn post, acc -> Map.update(acc, post.category, 1, &(&1 + 1)) end)
+      |> (&Enum.sort_by(Map.to_list(&1), fn {key, val} -> -val end)).()
 
     categories =
       Enum.reduce(posts, %{}, fn post, acc ->
@@ -24,6 +31,11 @@ defmodule NjuusWeb.AdminController do
         end
       end)
 
-    render(conn, "index.html", %{categories: categories, trackings: trackings, posts: posts})
+    render(conn, "index.html", %{
+      categories: categories,
+      trackings: trackings,
+      posts: posts,
+      cat_count: cat_count
+    })
   end
 end
