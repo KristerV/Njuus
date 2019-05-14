@@ -9,6 +9,8 @@ defmodule NjuusWeb.PageController do
       Core.list_posts()
       |> Categories.categorize_posts()
 
-    render(conn, "index.html", posts: posts)
+    icons = Application.get_env(:njuus, Categories)[:icons]
+
+    render(conn, "index.html", %{posts: posts, icons: icons})
   end
 end

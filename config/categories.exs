@@ -1,6 +1,23 @@
 use Mix.Config
 
 config :njuus, Njuus.Core.Categories,
+  icons: %{
+    "uudised" => "icons/news.svg",
+    "sündmused" => "icons/event.svg",
+    "poliitka" => "icons/politics.svg",
+    "sport" => "icons/Sports.svg",
+    "tehnika" => "icons/Technology.svg",
+    "majandus" => "icons/economy.svg",
+    "kultuur" => "icons/theatre.svg",
+    "maailm" => "icons/Globe.svg",
+    "elu" => "icons/nature.svg",
+    "naistekas" => "icons/Lips.svg",
+    "krüptoraha" => "icons/Bitcoin.svg",
+    "112" => "icons/emergency.svg",
+    "saated" => "icons/TV.svg",
+    "60+" => "icons/Plus.svg",
+    "muu" => "icons/other.svg"
+  },
   pairs: %{
     "uudised" => [
       "Eesti",

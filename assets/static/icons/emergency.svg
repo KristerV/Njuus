@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   data-name="Layer 1"
+   viewBox="0 0 50 50"
+   x="0px"
+   y="0px"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="emergency.svg"
+   width="50"
+   height="50"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14">
+  <metadata
+     id="metadata16">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>medical solid icons</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview12"
+     showgrid="false"
+     inkscape:zoom="3.9333333"
+     inkscape:cx="24"
+     inkscape:cy="33.967643"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg10" />
+  <title
+     id="title2">medical solid icons</title>
+  <path
+     d="m 47.136949,15.327966 a 24.12,24.12 0 0 0 -12.78,-12.7599999 24,24 0 0 0 -18.68,0 24,24 0 0 0 -14.6599998,22.1099999 23.63,23.63 0 0 0 1.89,9.34 24,24 0 0 0 12.7699998,12.77 24,24 0 0 0 18.68,0 24,24 0 0 0 12.78,-31.46 z m -9.47,14.61 h -7.65 v 7.65 h -9.85 v -7.65 h -8.15 v -10.39 h 8.2 v -7.65 h 9.8 v 7.65 h 7.66 z"
+     id="path4"
+     inkscape:connector-curvature="0" />
+</svg>
