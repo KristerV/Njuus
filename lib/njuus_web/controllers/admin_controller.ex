@@ -16,6 +16,18 @@ defmodule NjuusWeb.AdminController do
       Enum.reduce(posts, %{}, fn post, acc -> Map.update(acc, post.category, 1, &(&1 + 1)) end)
       |> (&Enum.sort_by(Map.to_list(&1), fn {key, val} -> -val end)).()
 
+    day_count =
+      Enum.reduce(posts, %{}, fn post, acc ->
+        Map.update(acc, DateTime.to_date(post.datetime), 1, &(&1 + 1))
+      end)
+      |> (&Enum.sort_by(Map.to_list(&1), fn {key, val} -> key end, fn d1, d2 ->
+            case Date.compare(d1, d2) do
+              :lt -> false
+              _ -> true
+            end
+          end)).()
+      |> Enum.slice(0..14)
+
     categories =
       Enum.reduce(posts, %{}, fn post, acc ->
         if !Categories.has_category?(post) do
@@ -35,7 +47,8 @@ defmodule NjuusWeb.AdminController do
       categories: categories,
       trackings: trackings,
       posts: posts,
-      cat_count: cat_count
+      cat_count: cat_count,
+      day_count: day_count
     })
   end
 end
