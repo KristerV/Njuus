@@ -2,15 +2,7 @@ alias Njuus.Core.Post
 
 defmodule Njuus.Feeds do
   def start() do
-    case File.read(Application.app_dir(:njuus, "priv/feed_list.csv")) do
-      {:ok, body} -> body
-      {:error, :enoent} -> raise "priv/feed_list.csv doesn't exist!"
-      {:error, reason} -> raise "priv/feed_list.csv Error: #{reason}"
-    end
-    |> String.split("\n")
-    # ignore comment rows
-    |> Enum.filter(fn item -> String.first(item) != "#" end)
-    |> Enum.map(&String.split(&1, ";"))
+    get_feed_list()
     |> Enum.each(&Task.start(Njuus.Feeds, :fetch_posts, [&1]))
   end
 
@@ -34,5 +26,25 @@ defmodule Njuus.Feeds do
 
       Task.start(Njuus.Core, :create_post_if_not_exists, [post])
     end
+  end
+
+  def get_feed_list() do
+    case File.read(Application.app_dir(:njuus, "priv/feed_list.csv")) do
+      {:ok, body} -> body
+      {:error, :enoent} -> raise "priv/feed_list.csv doesn't exist!"
+      {:error, reason} -> raise "priv/feed_list.csv Error: #{reason}"
+    end
+    |> String.split("\n")
+    # ignore comment rows
+    |> Enum.filter(fn item -> String.first(item) != "#" end)
+    |> Enum.map(&String.split(&1, ";"))
+  end
+
+  def get_feed_map() do
+    get_feed_list()
+    |> Map.new(fn [name | rest] ->
+      [category, url, icon] = rest
+      {name, %{category: category, url: url, icon: icon}}
+    end)
   end
 end

@@ -2,13 +2,13 @@ defmodule Njuus.Core.Categories do
   @moduledoc """
   Converts RSS feed categories to our own system.
   """
+  alias Njuus.Feeds
 
   @pairs Application.get_env(:njuus, Njuus.Core.Categories)[:pairs]
 
   def categorize_posts(posts) do
     posts
     |> Enum.map(fn post -> Map.put(post, :category, find_category(post)) end)
-    |> IO.inspect()
   end
 
   def inverse_keys() do
@@ -21,6 +21,10 @@ defmodule Njuus.Core.Categories do
   end
 
   def find_category(post) do
-    Enum.find_value(post.categories, "muu", fn cat -> inverse_keys()[cat] end)
+    feed = Feeds.get_feed_map()
+
+    Enum.find_value(post.categories, fn cat ->
+      inverse_keys()[cat] || feed[post.provider].category
+    end)
   end
 end
