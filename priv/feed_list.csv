@@ -1,12 +1,12 @@
-Postimees;https://www.postimees.ee/rss;https://f10.pmo.ee/83LPK-WPq4nqnvKlJ4MY5DW0Yyo=/16x16/smart/https://f.pmo.ee/logos/81/5ba210a7c2cc9705cfd32d200f09008d.png
-ERR;https://www.err.ee/rss;https://s.err.ee/www/images/favicon/uudised@2x.png
-Delfi;https://feeds2.feedburner.com/delfiuudised;https://g.delfi.ee/g/i/favicon2.ico
-Ekspress;https://feeds.feedburner.com/EestiEkspressFeed;https://ekspress.delfi.ee/ekspress.ico
-Maaleht;https://feeds2.feedburner.com/maaleht;https://g1.nh.ee/ml/ic/favicon.ico
-Ärileht;https://feeds2.feedburner.com/delfimajandus;https://g1.nh.ee/mj/ic/favicon.ico
-Hingele Pai;https://www.hingelepai.ee/post?format=RSS;https://www.hingelepai.ee/favicon.ico
-Geenius;https://geenius.ee/feed/;https://geenius.ee/app/uploads/2019/01/d25f6a3d0ff2c36f8945468384ad5897-32x32.png
-Äripäev;https://feeds.feedburner.com/aripaev-rss;https://www.aripaev.ee/icons/favicon-16x16.png
-Õhtuleht;https://www.ohtuleht.ee/rss;https://www.ohtuleht.ee/static/ico/32x32/ohtuleht_32x32.ico
-Digikapital;https://www.digikapital.ee/aktiivsus/feed/;https://www.digikapital.ee/wp-content/uploads/2018/01/digikapital-profiil-150x150.png
-Arvutimaailm;https://www.am.ee/rss.xml?destination=/&_exception_statuscode=404;https://www.am.ee/sites/default/files/favicon.ico
+Postimees;uudised;https://www.postimees.ee/rss;https://f10.pmo.ee/83LPK-WPq4nqnvKlJ4MY5DW0Yyo=/16x16/smart/https://f.pmo.ee/logos/81/5ba210a7c2cc9705cfd32d200f09008d.png
+ERR;uudised;https://www.err.ee/rss;https://s.err.ee/www/images/favicon/uudised@2x.png
+Delfi;uudised;https://feeds2.feedburner.com/delfiuudised;https://g.delfi.ee/g/i/favicon2.ico
+Ekspress;uudised;https://feeds.feedburner.com/EestiEkspressFeed;https://ekspress.delfi.ee/ekspress.ico
+Maaleht;uudised;https://feeds2.feedburner.com/maaleht;https://g1.nh.ee/ml/ic/favicon.ico
+Ärileht;majandus;https://feeds2.feedburner.com/delfimajandus;https://g1.nh.ee/mj/ic/favicon.ico
+Hingele Pai;tervis;https://www.hingelepai.ee/post?format=RSS;https://www.hingelepai.ee/favicon.ico
+Geenius;tehnika;https://geenius.ee/feed/;https://geenius.ee/app/uploads/2019/01/d25f6a3d0ff2c36f8945468384ad5897-32x32.png
+Äripäev;majandus;https://feeds.feedburner.com/aripaev-rss;https://www.aripaev.ee/icons/favicon-16x16.png
+Õhtuleht;uudised;https://www.ohtuleht.ee/rss;https://www.ohtuleht.ee/static/ico/32x32/ohtuleht_32x32.ico
+Digikapital;krüptoraha;https://www.digikapital.ee/aktiivsus/feed/;https://www.digikapital.ee/wp-content/uploads/2018/01/digikapital-profiil-150x150.png
+Arvutimaailm;tehnika;https://www.am.ee/rss.xml?destination=/&_exception_statuscode=404;https://www.am.ee/sites/default/files/favicon.ico

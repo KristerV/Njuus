@@ -14,7 +14,7 @@ defmodule Njuus.Feeds do
     |> Enum.each(&Task.start(Njuus.Feeds, :fetch_posts, [&1]))
   end
 
-  def fetch_posts([name, url, icon]) do
+  def fetch_posts([name, _category, url, icon]) do
     HTTPoison.start()
     {:ok, %HTTPoison.Response{body: body}} = HTTPoison.get(url)
     {:ok, feed, _} = FeederEx.parse(body)

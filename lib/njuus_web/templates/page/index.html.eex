@@ -1,5 +1,5 @@
 <%= for post <- @posts do %>
-  <p><img class="icon" src="<%= post.icon %>"/><a target="_blank" href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>" title="Teemad: <%= post.categories %>. (<%= post.datetime %>)"><%= post.title %></a>
+  <p><img class="icon" src="<%= post.icon %>"/><a target="_blank" href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>" title="Teemad: <%= post.category %>. (<%= post.datetime %>)"><%= post.title %></a>
     </p>
 <% end %>
 
