@@ -24,8 +24,8 @@ defmodule Njuus.Core.Categories do
     feed = Feeds.get_feed_map()
 
     Enum.find_value(post.categories, fn cat ->
-      inverse_keys()[cat] || feed[post.provider].category
-    end)
+      inverse_keys()[cat]
+    end) || feed[post.provider].category
   end
 
   def has_category?(post) do
