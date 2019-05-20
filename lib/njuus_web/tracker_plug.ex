@@ -1,5 +1,6 @@
 defmodule Njuus.TrackerPlug do
   import Plug.Conn
+  import Ecto
   alias Njuus.Repo
   alias Njuus.Tracking
 
@@ -7,19 +8,28 @@ defmodule Njuus.TrackerPlug do
 
   def call(conn, _opts) do
     conn
-    |> configure_session(renew: true)
+    |> add_user_id
     |> track
   end
 
   def track(conn) do
+    IO.puts("TRACK")
     %Tracking{}
     |> Tracking.changeset(%{
-      sessionid: conn.cookies["_njuus_key"],
+      sessionid: get_session(conn, :uuid),
       route: Enum.join(conn.path_info, "/"),
       ip: Enum.join(Tuple.to_list(conn.remote_ip), ".")
     })
     |> Repo.insert()
 
     conn
+  end
+
+  def add_user_id(conn) do
+    if get_session(conn, :uuid) == nil do
+      put_session(conn, :uuid, Ecto.UUID.generate)
+    else
+      conn
+    end
   end
 end
