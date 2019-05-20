@@ -1,7 +1,6 @@
 defmodule Njuus.Tracking do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Njuus.Repo
 
   schema "tracking" do
     field :sessionid, :string

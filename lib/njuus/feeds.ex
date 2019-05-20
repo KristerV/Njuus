@@ -1,5 +1,3 @@
-alias Njuus.Core.Post
-
 defmodule Njuus.Feeds do
   def start() do
     get_feed_list()
@@ -8,10 +6,18 @@ defmodule Njuus.Feeds do
 
   def fetch_posts([name, _category, url, icon]) do
     HTTPoison.start()
-    {:ok, %HTTPoison.Response{body: body}} = HTTPoison.get(url)
-    {:ok, feed, _} = FeederEx.parse(body)
 
-    for entry <- feed.entries do
+    {:ok, %HTTPoison.Response{body: body}} = HTTPoison.get(url)
+
+    case FeederEx.parse(body) do
+      {:ok, feed, _} -> save_feed_posts(feed.entries, [name, icon])
+      {:fatal_error, _, _, _, %FeederEx.Feed{link: nil}} -> nil # ignore if no link provided
+    end
+
+  end
+
+  def save_feed_posts(entries, [name, icon]) do
+    for entry <- entries do
       post = %{
         provider: name,
         body: entry.summary,

@@ -1,6 +1,5 @@
 defmodule Njuus.TrackerPlug do
   import Plug.Conn
-  import Ecto
   alias Njuus.Repo
   alias Njuus.Tracking
 
