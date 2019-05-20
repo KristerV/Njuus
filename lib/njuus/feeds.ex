@@ -11,9 +11,9 @@ defmodule Njuus.Feeds do
 
     case FeederEx.parse(body) do
       {:ok, feed, _} -> save_feed_posts(feed.entries, [name, icon])
-      {:fatal_error, _, _, _, %FeederEx.Feed{link: nil}} -> nil # ignore if no link provided
+      # ignore if no link provided
+      {:fatal_error, _, _, _, %FeederEx.Feed{link: nil}} -> nil
     end
-
   end
 
   def save_feed_posts(entries, [name, icon]) do

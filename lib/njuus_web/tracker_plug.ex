@@ -13,6 +13,7 @@ defmodule Njuus.TrackerPlug do
 
   def track(conn) do
     IO.puts("TRACK")
+
     %Tracking{}
     |> Tracking.changeset(%{
       sessionid: get_session(conn, :uuid),
@@ -26,7 +27,7 @@ defmodule Njuus.TrackerPlug do
 
   def add_user_id(conn) do
     if get_session(conn, :uuid) == nil do
-      put_session(conn, :uuid, Ecto.UUID.generate)
+      put_session(conn, :uuid, Ecto.UUID.generate())
     else
       conn
     end

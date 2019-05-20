@@ -40,7 +40,8 @@ defmodule NjuusWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_njuus_key",
-    max_age: 60*60*24*365*10, # 10 years is almost never :)
+    # 10 years is almost never :)
+    max_age: 60 * 60 * 24 * 365 * 10,
     signing_salt: "z+HMnhng"
 
   plug NjuusWeb.Router
