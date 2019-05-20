@@ -1,5 +1,6 @@
 ## Version 1.0
 
+- [ ] sub-voting with click-tracking (Y)
 - [ ] voting ('top' and 'new' section)
 - [ ] filter sources and subjects
 - [ ] flagging (duplicates, other)
