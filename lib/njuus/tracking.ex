@@ -18,6 +18,6 @@ defmodule Njuus.Tracking do
       :route,
       :ip
     ])
-    |> validate_required([:sessionid, :route, :ip])
+    |> validate_required([:sessionid, :ip])
   end
 end
