@@ -15,8 +15,33 @@
     height: 16px;
     margin-right: 10px;
     vertical-align: text-top;
+    cursor: pointer;
 }
 
 a:visited {
     color: #606c76;
+}
+
+.stack-icon {
+    width: 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.stack-icon *:nth-child(2) {
+    position: absolute;
+    width: 32px;
+    text-align: center;
+    left: -7.5px;
+    top: 6px;
+}
+
+.post .title {
+    display: inline-block;
+    max-width: 600px;
+    vertical-align: top;
+}
+
+.icon-transparent {
+    opacity: 0.3;
 }

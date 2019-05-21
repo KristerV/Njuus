@@ -1,7 +1,8 @@
 ## Version 1.0
 
-- [ ] sub-voting with click-tracking (Y)
-- [ ] voting ('top' and 'new' section)
+- [ ] click-tracking (Y)
+- [ ] 'top' and 'new' section
+- [x] voting functionality
 - [ ] filter sources and subjects
 - [ ] flagging (duplicates, other)
 - [x] a:visited { color: #606c76; }

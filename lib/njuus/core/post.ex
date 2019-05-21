@@ -12,7 +12,7 @@ defmodule Njuus.Core.Post do
     field :datetime, :utc_datetime
     field :icon, :string
     field :source, :string
-    field :votes, {:array, :integer}, default: [1]
+    field :votes, {:array, :string}, default: []
 
     timestamps()
   end

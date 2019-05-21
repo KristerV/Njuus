@@ -12,6 +12,7 @@ defmodule NjuusWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
   end
 
   scope "/", NjuusWeb do
@@ -21,8 +22,10 @@ defmodule NjuusWeb.Router do
     get "/admin", AdminController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", NjuusWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", NjuusWeb do
+    pipe_through :api
+
+    post "/vote_add", APIController, :vote_add
+    post "/vote_rem", APIController, :vote_rem
+  end
 end

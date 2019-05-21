@@ -12,8 +12,6 @@ defmodule Njuus.TrackerPlug do
   end
 
   def track(conn) do
-    IO.puts("TRACK")
-
     %Tracking{}
     |> Tracking.changeset(%{
       sessionid: get_session(conn, :uuid),

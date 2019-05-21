@@ -20,7 +20,8 @@ defmodule Njuus.Core do
   """
   def list_posts do
     from(p in Post,
-      order_by: [desc: p.datetime]
+      order_by: [desc: p.datetime],
+      limit: 200
     )
     |> Repo.all()
   end

@@ -1,13 +1,49 @@
+
+
 <%= for post <- @posts do %>
-  <p>
+  <p class="post">
+    <span class="stack-icon <%= get_voting_class(@conn, post) %>" onclick="handleVote(this, '<%= post.id %>')">
+      <img class="icon" src="icons/arrow-up.svg"/>
+      <sub><%= length(post.votes) %></sub>
+    </span>
+
     <img class="icon" src="<%= post.icon %>"/>
     <img class="icon" src="<%= @icons[post.category] %>"/>
-    <a
-      target="_blank"
-      href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>"
-      title="<%= post.category %> (<%= post.categories %>) - <%= post.datetime %>">
-      <%= post.title %>
-    </a>
+    <span class="title">
+      <a
+        target="_blank"
+        href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>"
+        title="<%= post.category %> (<%= post.categories %>) - <%= post.datetime %>">
+        <%= post.title %>
+      </a>
+    </span>
   </p>
 <% end %>
 
+
+<script>
+  async function handleVote(el, postid) {
+    const isVoted = !el.classList.contains('icon-transparent')
+    const body = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({postid})
+    }
+
+    let url = '/api/vote_add'
+    if (isVoted) {
+      url = '/api/vote_rem'
+    }
+    const resp = await fetch(url, body)
+    if (resp.status !== 200) return
+
+    el.classList.toggle('icon-transparent')
+
+    const newVotes = Number(await resp.text())
+    el.querySelector('sub').innerHTML = newVotes
+
+  }
+</script>
