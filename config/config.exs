@@ -29,7 +29,7 @@ config :njuus, Njuus.Scheduler,
   jobs: [
     {"@reboot", {Njuus.Feeds, :start, []}},
     # Every 15 minutes
-    {"*/15 * * * *", {Njuus.Feeds, :start, []}}
+    {"*/3 * * * *", {Njuus.Feeds, :start, []}}
   ]
 
 import_config "categories.exs"
