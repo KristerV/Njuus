@@ -45,3 +45,21 @@ a:visited {
 .icon-transparent {
     opacity: 0.3;
 }
+
+.tippy-tooltip {
+    font-size: 1.3rem;
+    border-radius: 5px;
+}
+
+.tippy-tooltip p {
+    margin: 0.5rem;
+}
+
+button.error {
+    background-color: #ff5370;
+    border: none;
+}
+
+.tippy-tooltip *:last-child {
+    margin-bottom: 1px;
+}

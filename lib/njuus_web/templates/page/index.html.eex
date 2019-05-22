@@ -1,14 +1,28 @@
-
+<script src="https://unpkg.com/popper.js@1"></script>
+<script src="https://unpkg.com/tippy.js@4"></script>
 
 <%= for post <- @posts do %>
+
+  <template id="template-provider-<%= post.id %>">
+    <p>Allikas: <%= post.provider %></p>
+    <button class="error">Peida <%= post.provider %></button>
+  </template>
+  <template id="template-category-<%= post.id %>">
+    <p>Kategooria: <%= post.category %></p>
+    <button class="error">Peida <%= post.category %></button>
+  </template>
+
   <p class="post">
+
     <span class="stack-icon <%= get_voting_class(@conn, post) %>" onclick="handleVote(this, '<%= post.id %>')" title="Kasutajate hääled.">
       <img class="icon" src="icons/arrow-up.svg"/>
       <sub><%= length(post.votes) %></sub>
     </span>
 
-    <img class="icon" src="<%= post.icon %>" title="<%= post.provider %>"/>
-    <img class="icon" src="<%= @icons[post.category] %>" title="<%= post.category %>"/>
+    <img class="icon" src="<%= post.icon %>" data-template="template-provider-<%= post.id %>"/>
+
+    <img class="icon" src="<%= @icons[post.category] %>" data-template="template-category-<%= post.id %>"/>
+
     <span class="title">
       <a
         target="_blank"
@@ -17,6 +31,7 @@
         <%= post.title %>
       </a>
     </span>
+
   </p>
 <% end %>
 
@@ -46,4 +61,17 @@
     el.querySelector('sub').innerHTML = newVotes
   }
 
+  tippy('.post > .icon', {
+    interactive: true,
+    content(el) {
+      const id = el.getAttribute('data-template')
+      const container = document.createElement('div')
+      const linkedTemplate = document.getElementById(id)
+      const node = document.importNode(linkedTemplate.content, true)
+      container.appendChild(node)
+      return container
+    },
+    arrow: true,
+    hideOnClick: false
+  })
 </script>
