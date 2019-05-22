@@ -2,13 +2,13 @@
 
 <%= for post <- @posts do %>
   <p class="post">
-    <span class="stack-icon <%= get_voting_class(@conn, post) %>" onclick="handleVote(this, '<%= post.id %>')">
+    <span class="stack-icon <%= get_voting_class(@conn, post) %>" onclick="handleVote(this, '<%= post.id %>')" title="Kasutajate hääled.">
       <img class="icon" src="icons/arrow-up.svg"/>
       <sub><%= length(post.votes) %></sub>
     </span>
 
-    <img class="icon" src="<%= post.icon %>"/>
-    <img class="icon" src="<%= @icons[post.category] %>"/>
+    <img class="icon" src="<%= post.icon %>" title="<%= post.provider %>"/>
+    <img class="icon" src="<%= @icons[post.category] %>" title="<%= post.category %>"/>
     <span class="title">
       <a
         target="_blank"
@@ -44,6 +44,6 @@
 
     const newVotes = Number(await resp.text())
     el.querySelector('sub').innerHTML = newVotes
-
   }
+
 </script>
