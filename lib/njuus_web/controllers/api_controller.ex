@@ -31,4 +31,22 @@ defmodule NjuusWeb.APIController do
       |> send_resp(400, "you haven't voted")
     end
   end
+
+  def update_user_settings(conn, settings) do
+    conn
+    |> put_session("settings", settings)
+  end
+
+  def add_user_filter(conn, params) do
+    current = get_session(conn, "settings") || Njuus.Settings.new()
+
+    newSettings =
+      case params["type"] do
+        "provider" -> update_in(current.filters.provider, &Enum.uniq(&1 ++ [params["name"]]))
+        "category" -> update_in(current.filters.category, &Enum.uniq(&1 ++ [params["name"]]))
+      end
+
+    put_session(conn, "settings", newSettings)
+    |> send_resp(200, "success")
+  end
 end

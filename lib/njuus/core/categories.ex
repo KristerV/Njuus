@@ -33,4 +33,8 @@ defmodule Njuus.Core.Categories do
       inverse_keys()[cat]
     end)
   end
+
+  def reverse_summarization(cat_list) do
+    Enum.reduce(cat_list, [], fn item, acc -> acc ++ @pairs[item] end)
+  end
 end

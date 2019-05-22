@@ -5,11 +5,11 @@
 
   <template id="template-provider-<%= post.id %>">
     <p>Allikas: <%= post.provider %></p>
-    <button class="error">Peida <%= post.provider %></button>
+    <button class="error" onclick="addFilter(this, 'provider', '<%= post.provider %>')">Peida <%= post.provider %></button>
   </template>
   <template id="template-category-<%= post.id %>">
     <p>Kategooria: <%= post.category %></p>
-    <button class="error">Peida <%= post.category %></button>
+    <button class="error" onclick="addFilter(this, 'category', '<%= post.category %>')">Peida <%= post.category %></button>
   </template>
 
   <p class="post">
@@ -37,6 +37,12 @@
 
 
 <script>
+
+  const headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+
   async function handleVote(el, postid) {
     const isVoted = !el.classList.contains('icon-transparent')
     const body = {
@@ -74,4 +80,27 @@
     arrow: true,
     hideOnClick: false
   })
+
+  async function addFilter(el, type, name) {
+    const resp = await fetch('/api/add_user_filter', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ type, name })
+    })
+
+    if (resp.status !== 200) return
+
+    const parent = el.parentElement
+    parent.removeChild(el)
+    parent.innerHTML += "<p>Peidetud (kajastub järgmine refresh)</p>"
+  }
+
+  async function updateFilter(filter) {
+    await fetch('/api/update_user_settings', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(filter)
+    })
+
+  }
 </script>
