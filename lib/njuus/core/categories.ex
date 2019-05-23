@@ -5,6 +5,7 @@ defmodule Njuus.Core.Categories do
   alias Njuus.Feeds
 
   @pairs Application.get_env(:njuus, Njuus.Core.Categories)[:pairs]
+  @pairs_ignore Application.get_env(:njuus, Njuus.Core.Categories)[:pairs_ignore]
 
   def categorize_posts(posts) do
     posts
@@ -32,7 +33,7 @@ defmodule Njuus.Core.Categories do
     oldCatMap = inverse_keys()
 
     !!Enum.find_value(post.categories, fn cat ->
-      oldCatMap[cat]
+      oldCatMap[cat] || Enum.member?(@pairs_ignore, cat)
     end)
   end
 

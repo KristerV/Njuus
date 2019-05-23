@@ -35,8 +35,15 @@ defmodule Njuus.Core do
           ^Categories.reverse_summarization(settings.filters.category)
         ),
       # Filter providers that default categories match if their cat is empty
+      # Some posts have a single cat that is useless
       where:
-        not (fragment("array_length(?, 1) = 0", p.categories) and
+        not ((fragment("array_length(?, 1) = 0", p.categories) or
+                fragment(
+                  "array_length(?, 1) = 1 AND ? && ?::character varying[]",
+                  p.categories,
+                  p.categories,
+                  ^Application.get_env(:njuus, Njuus.Core.Categories)[:pairs_ignore]
+                )) and
                p.provider in ^Categories.get_default_providers(settings.filters.category))
     )
     |> Repo.all()
