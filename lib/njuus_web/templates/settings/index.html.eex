@@ -49,5 +49,6 @@
             },
             body: JSON.stringify({settings})
         })
+        location = "/"
     }
 </script>
