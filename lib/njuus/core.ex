@@ -29,7 +29,7 @@ defmodule Njuus.Core do
         ),
       # Filter providers that default categories match if their cat is empty
       where:
-        not (fragment("array_length(?, 1) > 0", p.categories) and
+        not (fragment("array_length(?, 1) = 0", p.categories) and
                p.provider in ^Categories.get_default_providers(settings.filters.category))
     )
     |> Repo.all()

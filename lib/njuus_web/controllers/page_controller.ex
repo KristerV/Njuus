@@ -6,7 +6,7 @@ defmodule NjuusWeb.PageController do
   alias Njuus.Settings
 
   def index(conn, _params) do
-    settings = %Settings{} = get_session(conn, "settings") || Settings.new()
+    settings = get_session(conn, "settings") || Settings.new()
 
     posts =
       Core.list_posts(settings)
