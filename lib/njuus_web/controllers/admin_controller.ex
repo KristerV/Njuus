@@ -9,7 +9,7 @@ defmodule NjuusWeb.AdminController do
     trackings = Core.list_tracking()
 
     posts =
-      Core.list_posts()
+      Core.list_all_posts()
       |> Categories.categorize_posts()
 
     cat_count =

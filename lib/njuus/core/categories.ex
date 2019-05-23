@@ -29,8 +29,10 @@ defmodule Njuus.Core.Categories do
   end
 
   def has_category?(post) do
+    oldCatMap = inverse_keys()
+
     !!Enum.find_value(post.categories, fn cat ->
-      inverse_keys()[cat]
+      oldCatMap[cat]
     end)
   end
 

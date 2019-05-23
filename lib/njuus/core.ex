@@ -14,6 +14,13 @@ defmodule Njuus.Core do
     |> Repo.all()
   end
 
+  def list_all_posts do
+    from(p in Post,
+      order_by: [desc: p.datetime]
+    )
+    |> Repo.all()
+  end
+
   def list_posts(%Njuus.Settings{} = settings) do
     from(p in Post,
       order_by: [desc: p.datetime],
