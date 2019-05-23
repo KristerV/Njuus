@@ -17,15 +17,16 @@ defmodule Njuus.Core do
   end
 
   def list_posts(%Njuus.Settings{} = settings) do
-    IO.puts("lllllllllllllll")
-    IO.inspect(settings)
-    reverse_categories = Categories.reverse_summarization(settings.filters.category)
-    IO.inspect(reverse_categories)
-
     from(p in Post,
       order_by: [desc: p.datetime],
       limit: 200,
-      where: not (p.provider in ^settings.filters.provider)
+      where: not (p.provider in ^settings.filters.provider),
+      where:
+        not fragment(
+          "? && ?::character varying[]",
+          p.categories,
+          ^Categories.reverse_summarization(settings.filters.category)
+        )
     )
     |> Repo.all()
   end
