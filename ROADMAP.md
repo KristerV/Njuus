@@ -1,10 +1,9 @@
 ## Version 1.0
 
-- [ ] click-tracking (Y)
+- [ ] flagging (duplicates, other)
 - [ ] 'top' and 'new' section
 - [x] voting functionality
-- [ ] filter sources and subjects
-- [ ] flagging (duplicates, other)
+- [x] filter sources and subjects
 - [x] a:visited { color: #606c76; }
 - [x] Bug: Session is not persistent across browser close
 - [x] Bug: Total user count is always 1
