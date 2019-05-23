@@ -36,6 +36,14 @@ defmodule Njuus.Feeds do
 
   @doc """
   Read feeds file and return result as simple array.
+
+  Example result:
+  [
+    ["ERR", "uudised", "https://www.err.ee/rss",
+    "https://s.err.ee/www/images/favicon/uudised@2x.png"],
+    ["Delfi", "uudised", "https://feeds2.feedburner.com/delfiuudised",
+    "https://g.delfi.ee/g/i/favicon2.ico"]
+  ]
   """
   def get_feed_list() do
     case File.read(Application.app_dir(:njuus, "priv/feed_list.csv")) do
@@ -93,5 +101,10 @@ defmodule Njuus.Feeds do
     |> Enum.reduce(%{}, fn {provider, %{category: cat}}, acc ->
       update_in(acc, [cat], &((&1 || []) ++ [provider]))
     end)
+  end
+
+  def get_providers() do
+    get_feed_list
+    |> Enum.map(fn [name | rest] -> name end)
   end
 end

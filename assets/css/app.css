@@ -63,3 +63,20 @@ button.error {
 .tippy-tooltip *:last-child {
     margin-bottom: 1px;
 }
+
+.side-by-side {
+    display: flex;
+    justify-content: space-around;
+}
+
+.full-width {
+    width: calc(100% - 200px);
+    margin: 5rem 100px;
+    box-sizing: border-box;
+}
+
+@media (max-width:600px) {
+    .side-by-side {
+        display: inline;
+    }
+}

@@ -7,8 +7,6 @@ defmodule Njuus.Core do
   alias Njuus.Core.Categories
 
   def list_posts do
-    IO.puts("------------ settings 1")
-
     from(p in Post,
       order_by: [desc: p.datetime],
       limit: 200

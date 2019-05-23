@@ -48,4 +48,8 @@ defmodule Njuus.Core.Categories do
     cat_list
     |> Enum.reduce([], fn cat, acc -> acc ++ (default_cats[cat] || []) end)
   end
+
+  def get_all() do
+    Map.keys(@pairs)
+  end
 end

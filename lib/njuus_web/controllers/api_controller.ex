@@ -1,6 +1,7 @@
 defmodule NjuusWeb.APIController do
   use NjuusWeb, :controller
   alias Njuus.Core
+  alias Njuus.Settings
 
   def vote_add(conn, params) do
     uuid = get_session(conn, "uuid")
@@ -32,13 +33,14 @@ defmodule NjuusWeb.APIController do
     end
   end
 
-  def update_user_settings(conn, settings) do
+  def update_user_settings(conn, params) do
     conn
-    |> put_session("settings", settings)
+    |> put_session("settings", Settings.from_map(params["settings"]))
+    |> send_resp(200, "success")
   end
 
   def add_user_filter(conn, params) do
-    current = get_session(conn, "settings") || Njuus.Settings.new()
+    current = %Settings{} = get_session(conn, "settings") || Njuus.Settings.new()
 
     newSettings =
       case params["type"] do

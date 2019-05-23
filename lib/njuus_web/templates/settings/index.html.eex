@@ -1,0 +1,53 @@
+<div class="side-by-side">
+    <div>
+        <h2>Allikad</h2>
+        <%= for provider <- @providers do %>
+            <label>
+                <%= if Enum.member?(@settings.filters.provider, provider) do %>
+                    <input data-type="provider" name="<%= provider %>" type="checkbox"/>
+                <% else %>
+                    <input data-type="provider" name="<%= provider %>" type="checkbox" checked/>
+                <% end %>
+                <%= provider %>
+            </label>
+        <% end %>
+    </div>
+    <div>
+        <h2>Teemad</h2>
+        <%= for cat <- @categories do %>
+            <label>
+                <%= if Enum.member?(@settings.filters.category, cat) do %>
+                    <input data-type="category" name="<%= cat %>" type="checkbox"/>
+                <% else %>
+                    <input data-type="category" name="<%= cat %>" type="checkbox" checked/>
+                <% end %>
+                <%= cat %>
+            </label>
+        <% end %>
+    </div>
+</div>
+<button onclick="saveSettings()" class="full-width">Salvesta</button>
+
+<script>
+    async function saveSettings() {
+        const settings = {
+            filters: {
+                provider: [],
+                category: [],
+            }
+        }
+        document.querySelectorAll('input').forEach(inp => {
+            if (!inp.checked) {
+                settings.filters[inp.getAttribute('data-type')].push(inp.name)
+            }
+        })
+        await fetch('/api/update_user_settings', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({settings})
+        })
+    }
+</script>

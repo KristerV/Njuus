@@ -20,6 +20,7 @@ defmodule NjuusWeb.Router do
 
     get "/", PageController, :index
     get "/admin", AdminController, :index
+    get "/seaded", SettingsController, :index
   end
 
   scope "/api", NjuusWeb do
