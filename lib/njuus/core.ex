@@ -20,13 +20,19 @@ defmodule Njuus.Core do
     from(p in Post,
       order_by: [desc: p.datetime],
       limit: 200,
+      # Filter providers
       where: not (p.provider in ^settings.filters.provider),
+      # Filter categories
       where:
         not fragment(
           "? && ?::character varying[]",
           p.categories,
           ^Categories.reverse_summarization(settings.filters.category)
-        )
+        ),
+      # Filter providers that default categories match if their cat is empty
+      where:
+        not (fragment("array_length(?, 1) > 0", p.categories) and
+               p.provider in ^Categories.get_default_providers(settings.filters.category))
     )
     |> Repo.all()
   end
@@ -45,12 +51,12 @@ defmodule Njuus.Core do
   end
 
   def create_post_if_not_exists(attrs) do
-    post = Repo.get_by(Post, link: attrs.link)
+    count = Repo.one(from p in Post, select: count(), where: p.link == ^attrs.link)
 
-    if post == nil do
+    if count == 0 do
       create_post(attrs)
     else
-      post
+      false
     end
   end
 

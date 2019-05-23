@@ -37,4 +37,15 @@ defmodule Njuus.Core.Categories do
   def reverse_summarization(cat_list) do
     Enum.reduce(cat_list, [], fn item, acc -> acc ++ @pairs[item] end)
   end
+
+  @doc """
+  Converts category list into provider list by
+  matching default provider categories.
+  """
+  def get_default_providers(cat_list) do
+    default_cats = Njuus.Feeds.get_default_categories()
+
+    cat_list
+    |> Enum.reduce([], fn cat, acc -> acc ++ (default_cats[cat] || []) end)
+  end
 end

@@ -34,6 +34,9 @@ defmodule Njuus.Feeds do
     end
   end
 
+  @doc """
+  Read feeds file and return result as simple array.
+  """
   def get_feed_list() do
     case File.read(Application.app_dir(:njuus, "priv/feed_list.csv")) do
       {:ok, body} -> body
@@ -46,11 +49,49 @@ defmodule Njuus.Feeds do
     |> Enum.map(&String.split(&1, ";"))
   end
 
+  @doc """
+  Read feeds file and return a handy map.
+
+  Example structure:
+
+  %{
+    "Maaleht" => %{
+      category: "uudised",
+      icon: "https://g1.nh.ee/ml/ic/favicon.ico",
+      url: "https://feeds2.feedburner.com/maaleht"
+    },
+    "Postimees" => %{
+      category: "uudised",
+      icon: "https://f.pmo.ee/logos/81/5ba210a7c2cc9705cfd32d200f09008d.png",
+      url: "https://www.postimees.ee/rss"
+    }
+  }
+  """
   def get_feed_map() do
     get_feed_list()
     |> Map.new(fn [name | rest] ->
       [category, url, icon] = rest
       {name, %{category: category, url: url, icon: icon}}
+    end)
+  end
+
+  @doc """
+  Get a map of categories and their matching providers
+
+  Example structure:
+
+  %{
+    "krüptoraha" => ["Digikapital"],
+    "majandus" => ["Ärileht", "Äripäev"],
+    "tehnika" => ["Arvutimaailm", "Geenius"],
+    "tervis" => ["Hingele Pai"],
+    "uudised" => ["Delfi", "ERR", "Ekspress", "Maaleht", "Postimees", "Õhtuleht"]
+  }
+  """
+  def get_default_categories() do
+    get_feed_map()
+    |> Enum.reduce(%{}, fn {provider, %{category: cat}}, acc ->
+      update_in(acc, [cat], &((&1 || []) ++ [provider]))
     end)
   end
 end
