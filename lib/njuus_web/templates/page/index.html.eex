@@ -1,39 +1,37 @@
 <p><a href="/seaded">filtrid</a></p>
 
-<%= for post <- @posts do %>
+<h2 class="secondary-title">Viimase
+<select id="hours-select" onchange="addPeriod(this)">
+  <option value="24">24h</option>
+  <option value="168">nädala</option>
+  <option value="720">kuu</option>
+</select>
+ TOP 30 Eesti uudist</h2>
 
-  <template id="template-provider-<%= post.id %>">
-    <p>Allikas: <%= post.provider %></p>
-    <button class="error" onclick="addFilter(this, 'provider', '<%= post.provider %>')">Peida <%= post.provider %></button>
-  </template>
-  <template id="template-category-<%= post.id %>">
-    <p>Kategooria: <%= post.category %></p>
-    <button class="error" onclick="addFilter(this, 'category', '<%= post.category %>')">Peida <%= post.category %></button>
-  </template>
+ <script>
 
-  <p class="post">
+    // React to select change
+    function addPeriod(el) {
+      location = '/?p=' + el.options[el.selectedIndex].value
+    }
 
-    <span class="stack-icon <%= get_voting_class(@conn, post) %>" onclick="handleVote(this, '<%= post.id %>')" title="Kasutajate hääled.">
-      <img class="icon" src="icons/arrow-up.svg"/>
-      <sub><%= length(post.votes) %></sub>
-    </span>
+    // Set default selected hours
+    document.querySelectorAll('#hours-select option').forEach(function(item){
+      if (item.value == <%= @hours_selected %>) {
+        item.selected = true
+      }
+    })
+ </script>
 
-    <img class="icon" src="<%= post.icon %>" data-template="template-provider-<%= post.id %>"/>
-
-    <img class="icon" src="<%= @icons[post.category] %>" data-template="template-category-<%= post.id %>"/>
-
-    <span class="title">
-      <a
-        target="_blank"
-        href="<%= if post.link, do: post.link, else: Routes.post_path(@conn, :show, post) %>"
-        title="<%= post.category %> (<%= post.categories %>) - <%= post.datetime %>">
-        <%= post.title %>
-      </a>
-    </span>
-
-  </p>
+<%= for post <- @top_posts do %>
+  <%= render NjuusWeb.PageView, "post.html", [conn: @conn, post: post, icons: @icons] %>
 <% end %>
 
+<h2>Värsked uudised üle Eesti</h2>
+
+<%= for post <- @posts do %>
+  <%= render NjuusWeb.PageView, "post.html", [conn: @conn, post: post, icons: @icons] %>
+<% end %>
 
 <script src="https://unpkg.com/popper.js@1"></script>
 <script src="https://unpkg.com/tippy.js@4"></script>

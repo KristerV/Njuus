@@ -22,9 +22,32 @@ defmodule Njuus.Core do
   end
 
   def list_posts(%Njuus.Settings{} = settings) do
-    from(p in Post,
-      order_by: [desc: p.datetime],
+    from(p in query_posts(settings), limit: 200, order_by: [desc: p.datetime])
+    |> Repo.all()
+  end
+
+  def list_posts(%Njuus.Settings{} = settings, hours) do
+    from(p in query_posts(settings),
+      where: p.datetime > ^Timex.shift(Timex.now(), hours: -hours),
       limit: 200,
+      order_by: [desc: p.datetime]
+    )
+    |> Repo.all()
+  end
+
+  def list_top_posts(%Njuus.Settings{} = settings, hours) do
+    from(p in query_posts(settings),
+      where: p.datetime > ^Timex.shift(Timex.now(), hours: -hours),
+      limit: 10,
+      order_by: [desc_nulls_last: fragment("array_length(?, 1)", p.votes)],
+      order_by: [desc: p.datetime]
+    )
+    |> IO.inspect()
+    |> Repo.all()
+  end
+
+  def query_posts(%Njuus.Settings{} = settings) do
+    from(p in Post,
       # Filter providers
       where: not (p.provider in ^settings.filters.provider),
       # Filter categories
@@ -46,7 +69,6 @@ defmodule Njuus.Core do
                 )) and
                p.provider in ^Categories.get_default_providers(settings.filters.category))
     )
-    |> Repo.all()
   end
 
   def list_tracking do

@@ -10,6 +10,16 @@
     font-family: 'Arbutus Slab', serif;
 }
 
+h2, h2 select {
+    font-family: 'Arbutus Slab', serif;
+    text-align: center;
+}
+
+h2 select {
+    font-size: 2.8rem;
+    height: auto;
+}
+
 .icon {
     width: 16px;
     height: 16px;

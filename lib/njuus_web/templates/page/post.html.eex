@@ -1,0 +1,30 @@
+<template id="template-provider-<%= @post.id %>">
+    <p>Allikas: <%= @post.provider %></p>
+    <button class="error" onclick="addFilter(this, 'provider', '<%= @post.provider %>')">Peida <%= @post.provider %></button>
+  </template>
+  <template id="template-category-<%= @post.id %>">
+    <p>Kategooria: <%= @post.category %></p>
+    <button class="error" onclick="addFilter(this, 'category', '<%= @post.category %>')">Peida <%= @post.category %></button>
+  </template>
+
+  <p class="post">
+
+    <span class="stack-icon <%= get_voting_class(@conn, @post) %>" onclick="handleVote(this, '<%= @post.id %>')" title="Kasutajate hääled.">
+      <img class="icon" src="icons/arrow-up.svg"/>
+      <sub><%= length(@post.votes) %></sub>
+    </span>
+
+    <img class="icon" src="<%= @post.icon %>" data-template="template-provider-<%= @post.id %>"/>
+
+    <img class="icon" src="<%= @icons[@post.category] %>" data-template="template-category-<%= @post.id %>"/>
+
+    <span class="title">
+      <a
+        target="_blank"
+        href="<%= if @post.link, do: @post.link, else: Routes.post_path(@conn, :show, @post) %>"
+        title="<%= @post.category %> (<%= @post.categories %>) - <%= @post.datetime %>">
+        <%= @post.title %>
+      </a>
+    </span>
+
+  </p>

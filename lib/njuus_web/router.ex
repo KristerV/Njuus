@@ -27,7 +27,7 @@ defmodule NjuusWeb.Router do
     pipe_through :api
 
     post "/vote_add", APIController, :vote_add
-    post "/vote_add", APIController, :vote_add
+    post "/vote_rem", APIController, :vote_rem
     post "/update_user_settings", APIController, :update_user_settings
     post "/add_user_filter", APIController, :add_user_filter
   end

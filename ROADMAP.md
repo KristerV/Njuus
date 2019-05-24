@@ -1,13 +1,14 @@
 ## Version Next
 
 - [ ] flagging (duplicates, fake news)
+- [ ] click tracking
 
 ## Version 1.0
 
 - [ ] User stats on a chart
 - [ ] Contact email
-- [ ] 'today', 'yesterday', 'this week', 'this month'
-- [ ] 'top' and 'new' section
+- [x] 'today', 'this week', 'this month'
+- [x] 'top' and 'new' section
 - [x] voting functionality
 - [x] filter sources and subjects
 - [x] a:visited { color: #606c76; }
