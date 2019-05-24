@@ -7,7 +7,7 @@
 ## Version 1.0
 
 - [x] User stats on a chart
-- [ ] Contact email
+- [x] Contact email
 - [x] 'today', 'this week', 'this month'
 - [x] 'top' and 'new' section
 - [x] voting functionality

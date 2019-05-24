@@ -3,6 +3,11 @@
 @import url('https://fonts.googleapis.com/css?family=Arbutus+Slab');
 @import "./phoenix.css";
 
+header {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
 #main-title {
     text-align: center;
     margin: 6rem;
@@ -83,6 +88,12 @@ button.error {
     width: calc(100% - 200px);
     margin: 5rem 100px;
     box-sizing: border-box;
+}
+
+.menu > * {
+    text-align: right;
+    margin: 1rem;
+    text-transform: capitalize;
 }
 
 @media (max-width:600px) {
