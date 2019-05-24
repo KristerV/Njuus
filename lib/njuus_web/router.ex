@@ -19,7 +19,7 @@ defmodule NjuusWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    get "/admin", AdminController, :index
+    get "/stats", StatsController, :index
     get "/seaded", SettingsController, :index
   end
 

@@ -1,4 +1,4 @@
-defmodule NjuusWeb.AdminController do
+defmodule NjuusWeb.StatsController do
   use NjuusWeb, :controller
 
   alias Njuus.Core
