@@ -1,6 +1,12 @@
+## Version Next
+
+- [ ] flagging (duplicates, fake news)
+
 ## Version 1.0
 
-- [ ] flagging (duplicates, other)
+- [ ] User stats on a chart
+- [ ] Contact email
+- [ ] 'today', 'yesterday', 'this week', 'this month'
 - [ ] 'top' and 'new' section
 - [x] voting functionality
 - [x] filter sources and subjects
