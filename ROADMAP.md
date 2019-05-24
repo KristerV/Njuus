@@ -2,10 +2,11 @@
 
 - [ ] flagging (duplicates, fake news)
 - [ ] click tracking
+- [ ] Test on IE11 / is it even a problem?
 
 ## Version 1.0
 
-- [ ] User stats on a chart
+- [x] User stats on a chart
 - [ ] Contact email
 - [x] 'today', 'this week', 'this month'
 - [x] 'top' and 'new' section

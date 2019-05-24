@@ -8,6 +8,23 @@ defmodule NjuusWeb.AdminController do
   def index(conn, _params) do
     trackings = Core.list_tracking()
 
+    tracking_datemap =
+      Enum.reduce(trackings, %{}, fn t, acc ->
+        Map.update(acc, DateTime.to_date(t.inserted_at), 1, &(&1 + 1))
+      end)
+
+    tracking_datemap_unique =
+      Enum.reduce(trackings, %{}, fn t, acc ->
+        Map.put(
+          acc,
+          t.sessionid <> Date.to_string(DateTime.to_date(t.inserted_at)),
+          DateTime.to_date(t.inserted_at)
+        )
+      end)
+      |> Enum.reduce(%{}, fn {_sessid, date}, acc ->
+        Map.update(acc, date, 1, &(&1 + 1))
+      end)
+
     posts =
       Core.list_all_posts()
       |> Categories.categorize_posts()
@@ -48,7 +65,9 @@ defmodule NjuusWeb.AdminController do
       trackings: trackings,
       posts: posts,
       cat_count: cat_count,
-      day_count: day_count
+      day_count: day_count,
+      tracking_datemap: tracking_datemap,
+      tracking_datemap_unique: tracking_datemap_unique
     })
   end
 end

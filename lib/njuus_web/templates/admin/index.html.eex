@@ -1,4 +1,57 @@
-<h1>Stats</h1>
+
+<canvas id="main-chart"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+var ctx = document.getElementById('main-chart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: <%= raw Poison.encode!(Map.keys(@tracking_datemap_unique)) %>,
+        datasets: [
+        {
+            label: 'Unique users',
+            data: <%= raw Poison.encode!(Map.values(@tracking_datemap_unique)) %>,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+            ],
+            borderWidth: 2,
+            yAxisID: 'y-axis-1'
+        },
+        {
+            label: 'Total visits',
+            data: <%= raw Poison.encode!(Map.values(@tracking_datemap)) %>,
+            fill: false,
+            borderColor: [
+                'rgba(99, 25, 132, 0.8)',
+            ],
+            borderWidth: 2,
+            yAxisID: 'y-axis-2'
+        },
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [
+            {
+                type: 'linear',
+                display: true,
+                position: 'left',
+                id: 'y-axis-1',
+            }, {
+                type: 'linear',
+                display: true,
+                position: 'right',
+                id: 'y-axis-2',
+            },
+            ],
+        }
+    }
+});
+</script>
+
 <p>Total unique users: <%= length(Enum.uniq_by(@trackings, fn t -> t.sessionid end)) %></p>
 <p>Total articles: <%= length(@posts) %></p>
 

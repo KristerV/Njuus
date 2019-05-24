@@ -47,6 +47,7 @@ defmodule Njuus.MixProject do
       {:httpoison, "~> 1.4"},
       {:distillery, "~> 2.0"},
       {:timex, "~> 3.0"},
+      {:poison, "~> 3.1"},
       {:plug_cowboy, "~> 2.0"}
     ]
   end
