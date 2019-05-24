@@ -1,4 +1,14 @@
 
+<h2>Milleks Njuusi vaja on?</h2>
+
+<p>Tegu on personaalse hobiprojektiga. Ma ei ole eriline uudiste lugeja, aga kangesti tahaks siiski kokkuvõtlikult teada, mis Eestis toimub. Seega lõin sellise agregaatori, et äkki kui igaüks loeb 10 artiklit ja hääletab paremate poolt, siis koostööjõul saame tähtsaimad uudised siit kiirelt ja mugavalt kätte.</p>
+
+<p>Teine eesmärk on ka üritada kaasa aidata Eesti info kvaliteedile. Praegusel hetkel tuleb päevas üle 500 artikli erinevatelt väljaannetelt (peavoolumeedias). Kes jõuab kõike seda läbi vaadata? Uudiste agentuurid tihti kirjutavad kvaliteetseid artikleid, aga avalehel trumpab kvaliteeti endiselt sensatsioon. Sotsiaalmeedia oleks justkui lahendus, aga seal on igal inimesel oma pisike mull. Seega loodan, et ehk saame hääletamisega välja filtreerida olulisemad artiklid ühtses kultuuriruumis.</p>
+
+<p>Kaebused, soovid ja kiitused saada <a href="mailto:njuus-web@krister.ee">njuus-web@krister.ee</a></p>
+
+<h2>Statistika</h2>
+
 <canvas id="main-chart"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script>
@@ -69,9 +79,11 @@ var myChart = new Chart(ctx, {
 <% end %>
 </ul>
 
-<h1>Lahterdamata teemad</h1>
+<h2>Adminnile vajalik info</h2>
+
+<h3>Lahterdamata teemad</h3>
 <%= for {key, catList} <- @categories do %>
-    <h2><%= key %></h2>
+    <h4><%= key %></h4>
     <p>
     <%= for {cat, link} <- catList do %>
         <a target="_blank" href="<%= link %>"><%= cat %></a>,
