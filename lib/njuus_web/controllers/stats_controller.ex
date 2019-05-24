@@ -2,7 +2,6 @@ defmodule NjuusWeb.StatsController do
   use NjuusWeb, :controller
 
   alias Njuus.Core
-  alias Njuus.Core.Post
   alias Njuus.Core.Categories
 
   def index(conn, _params) do
@@ -31,13 +30,13 @@ defmodule NjuusWeb.StatsController do
 
     cat_count =
       Enum.reduce(posts, %{}, fn post, acc -> Map.update(acc, post.category, 1, &(&1 + 1)) end)
-      |> (&Enum.sort_by(Map.to_list(&1), fn {key, val} -> -val end)).()
+      |> (&Enum.sort_by(Map.to_list(&1), fn {_key, val} -> -val end)).()
 
     day_count =
       Enum.reduce(posts, %{}, fn post, acc ->
         Map.update(acc, DateTime.to_date(post.datetime), 1, &(&1 + 1))
       end)
-      |> (&Enum.sort_by(Map.to_list(&1), fn {key, val} -> key end, fn d1, d2 ->
+      |> (&Enum.sort_by(Map.to_list(&1), fn {key, _val} -> key end, fn d1, d2 ->
             case Date.compare(d1, d2) do
               :lt -> false
               _ -> true
@@ -53,7 +52,7 @@ defmodule NjuusWeb.StatsController do
             |> Enum.map(fn cat -> {cat, post.link} end)
 
           Map.merge(acc, %{post.provider() => catLink}, fn _k, v1, v2 ->
-            Enum.uniq_by(v1 ++ v2, fn {cat, link} -> cat end)
+            Enum.uniq_by(v1 ++ v2, fn {cat, _link} -> cat end)
           end)
         else
           acc
