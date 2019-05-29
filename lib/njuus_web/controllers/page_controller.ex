@@ -10,12 +10,14 @@ defmodule NjuusWeb.PageController do
 
     hours_selected = String.to_integer(params["p"] || "24")
 
-    posts =
-      Core.list_posts(settings)
-      |> Categories.categorize_posts()
-
     top_posts =
       Core.list_top_posts(settings, hours_selected)
+      |> Categories.categorize_posts()
+
+    top_post_ids = Enum.map(top_posts, fn item -> item.id end)
+
+    posts =
+      Core.list_posts(settings, top_post_ids)
       |> Categories.categorize_posts()
 
     render(conn, "index.html", %{

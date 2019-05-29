@@ -3,6 +3,11 @@
 - [ ] flagging (duplicates, fake news)
 - [ ] click tracking
 - [ ] Test on IE11 / is it even a problem?
+- [ ] Distinguish paid articles and enable filtering them
+
+## Version 1.1
+
+- [x] Don't repeat articles between 'new' and 'top'
 
 ## Version 1.0
 

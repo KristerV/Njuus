@@ -26,11 +26,20 @@ defmodule Njuus.Core do
     |> Repo.all()
   end
 
-  def list_posts(%Njuus.Settings{} = settings, hours) do
+  def list_posts(%Njuus.Settings{} = settings, hours) when is_integer(hours) do
     from(p in query_posts(settings),
       where: p.datetime > ^Timex.shift(Timex.now(), hours: -hours),
       limit: 200,
       order_by: [desc: p.datetime]
+    )
+    |> Repo.all()
+  end
+
+  def list_posts(%Njuus.Settings{} = settings, filter_ids) when is_list(filter_ids) do
+    from(p in query_posts(settings),
+      limit: 200,
+      order_by: [desc: p.datetime],
+      where: p.id not in ^filter_ids
     )
     |> Repo.all()
   end
