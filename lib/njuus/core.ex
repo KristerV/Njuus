@@ -51,7 +51,6 @@ defmodule Njuus.Core do
       order_by: [desc_nulls_last: fragment("array_length(?, 1)", p.votes)],
       order_by: [desc: p.datetime]
     )
-    |> IO.inspect()
     |> Repo.all()
   end
 
@@ -81,7 +80,7 @@ defmodule Njuus.Core do
   end
 
   def list_tracking do
-    from(p in Tracking)
+    from(p in Tracking, order_by: p.inserted_at)
     |> Repo.all()
   end
 

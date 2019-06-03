@@ -16,11 +16,11 @@ var ctx = document.getElementById('main-chart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: <%= raw Poison.encode!(Map.keys(@tracking_datemap_unique)) %>,
+        labels: <%= raw Poison.encode!(@tracking_dates) %>,
         datasets: [
         {
             label: 'Unique users',
-            data: <%= raw Poison.encode!(Map.values(@tracking_datemap_unique)) %>,
+            data: <%= raw Poison.encode!(Enum.map(@tracking_dates, &Map.fetch!(@tracking_datemap_unique, &1))) %>,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
             ],
@@ -32,7 +32,7 @@ var myChart = new Chart(ctx, {
         },
         {
             label: 'Total visits',
-            data: <%= raw Poison.encode!(Map.values(@tracking_datemap)) %>,
+            data: <%= raw Poison.encode!(Enum.map(@tracking_dates, &Map.fetch!(@tracking_datemap, &1))) %>,
             fill: false,
             borderColor: [
                 'rgba(99, 25, 132, 0.8)',

@@ -7,8 +7,17 @@ defmodule NjuusWeb.StatsController do
   def index(conn, _params) do
     trackings = Core.list_tracking()
 
+    %{inserted_at: firstDate} = hd(trackings)
+    %{inserted_at: lastDate} = List.last(trackings)
+
+    tracking_dates =
+      Date.range(DateTime.to_date(firstDate), DateTime.to_date(lastDate))
+      |> Enum.to_list()
+
+    empty_map = Map.new(tracking_dates, &{&1, 0})
+
     tracking_datemap =
-      Enum.reduce(trackings, %{}, fn t, acc ->
+      Enum.reduce(trackings, empty_map, fn t, acc ->
         Map.update(acc, DateTime.to_date(t.inserted_at), 1, &(&1 + 1))
       end)
 
@@ -20,7 +29,7 @@ defmodule NjuusWeb.StatsController do
           DateTime.to_date(t.inserted_at)
         )
       end)
-      |> Enum.reduce(%{}, fn {_sessid, date}, acc ->
+      |> Enum.reduce(empty_map, fn {_sessid, date}, acc ->
         Map.update(acc, date, 1, &(&1 + 1))
       end)
 
@@ -66,6 +75,7 @@ defmodule NjuusWeb.StatsController do
       cat_count: cat_count,
       day_count: day_count,
       tracking_datemap: tracking_datemap,
+      tracking_dates: tracking_dates,
       tracking_datemap_unique: tracking_datemap_unique
     })
   end
