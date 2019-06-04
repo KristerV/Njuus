@@ -30,16 +30,6 @@ var myChart = new Chart(ctx, {
             borderWidth: 2,
             yAxisID: 'y-axis-1'
         },
-        {
-            label: 'Total visits',
-            data: <%= raw Poison.encode!(Enum.map(@tracking_dates, &Map.fetch!(@tracking_datemap, &1))) %>,
-            fill: false,
-            borderColor: [
-                'rgba(99, 25, 132, 0.8)',
-            ],
-            borderWidth: 2,
-            yAxisID: 'y-axis-2'
-        },
         ]
     },
     options: {
@@ -48,13 +38,8 @@ var myChart = new Chart(ctx, {
             {
                 type: 'linear',
                 display: true,
-                position: 'left',
-                id: 'y-axis-1',
-            }, {
-                type: 'linear',
-                display: true,
                 position: 'right',
-                id: 'y-axis-2',
+                id: 'y-axis-1',
             },
             ],
         }

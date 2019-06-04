@@ -16,11 +16,6 @@ defmodule NjuusWeb.StatsController do
 
     empty_map = Map.new(tracking_dates, &{&1, 0})
 
-    tracking_datemap =
-      Enum.reduce(trackings, empty_map, fn t, acc ->
-        Map.update(acc, DateTime.to_date(t.inserted_at), 1, &(&1 + 1))
-      end)
-
     tracking_datemap_unique =
       Enum.reduce(trackings, %{}, fn t, acc ->
         Map.put(
@@ -74,7 +69,6 @@ defmodule NjuusWeb.StatsController do
       posts: posts,
       cat_count: cat_count,
       day_count: day_count,
-      tracking_datemap: tracking_datemap,
       tracking_dates: tracking_dates,
       tracking_datemap_unique: tracking_datemap_unique
     })
