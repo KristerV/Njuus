@@ -47,7 +47,7 @@ defmodule Njuus.Core do
   def list_top_posts(%Njuus.Settings{} = settings, hours) do
     from(p in query_posts(settings),
       where: p.datetime > ^Timex.shift(Timex.now(), hours: -hours),
-      limit: 10,
+      limit: 15,
       order_by: [desc_nulls_last: fragment("array_length(?, 1)", p.votes)],
       order_by: [desc: p.datetime]
     )
