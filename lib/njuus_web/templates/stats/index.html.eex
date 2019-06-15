@@ -13,7 +13,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script>
 var ctx = document.getElementById('main-chart').getContext('2d');
-var myChart = new Chart(ctx, {
+var settings = {
     type: 'line',
     data: {
         labels: <%= raw Poison.encode!(@tracking_dates) %>,
@@ -44,7 +44,18 @@ var myChart = new Chart(ctx, {
             ],
         }
     }
-});
+}
+
+var darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+if (darkMode) {
+    settings.options.scales['xAxes'] = [{ gridLines: { color: 'rgba(255, 255, 255, 0.25)' },
+                                          ticks: { fontColor: 'rgba(255, 255, 255, 0.75)' }}];
+    settings.options.scales.yAxes[0].gridLines['color'] = 'rgba(255, 255, 255, 0.25)';
+    settings.options.scales.yAxes[0].ticks = { 'fontColor': 'rgba(255, 255, 255, 0.8)' };
+    settings.options['legend'] = {labels: {fontColor: 'rgba(255, 255, 255, 0.8' }};
+}
+
+var myChart = new Chart(ctx, settings);
 </script>
 
 <p>Total unique users: <%= length(Enum.uniq_by(@trackings, fn t -> t.sessionid end)) %></p>

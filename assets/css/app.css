@@ -101,3 +101,42 @@ button.error {
         display: inline;
     }
 }
+
+@media (prefers-color-scheme: dark)
+{
+    :root {
+        background: #121212;
+    }
+
+    body, select {
+        color: #ffffff !important;
+    }
+
+    select {
+        background-color: #242424;
+    }
+
+    a, a:hover {
+        color: #8ab4f8;
+    }
+	
+    select {
+        border-color: #909090;
+    }
+
+    select:focus {
+        border-color: #8080ff !important;
+    }
+
+    a:visited, a:hover:visited {
+        color: #9075c0;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    img.icon:not(.site_icon) {
+        filter: invert(1);
+    }
+}

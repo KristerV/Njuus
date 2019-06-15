@@ -14,7 +14,7 @@
       <sub><%= length(@post.votes) %></sub>
     </span>
 
-    <img class="icon" src="<%= @post.icon %>" data-template="template-provider-<%= @post.id %>"/>
+    <img class="icon site_icon" src="<%= @post.icon %>" data-template="template-provider-<%= @post.id %>"/>
 
     <img class="icon" src="<%= @icons[@post.category] %>" data-template="template-category-<%= @post.id %>"/>
 
