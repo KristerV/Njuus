@@ -101,4 +101,16 @@
     })
 
   }
+
+  // Help people understand how voting works
+
+    tippy('.post', {
+      trigger: 'click',
+      interactive: true,
+      content(el) {
+        return "<h4 style='padding: 0.5rem 1rem;'>Anna artiklile hääl, klikkides noolele!</h4>"
+      },
+      arrow: false,
+      placement: "top-start"
+    })
 </script>

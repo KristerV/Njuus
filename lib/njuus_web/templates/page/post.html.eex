@@ -9,7 +9,7 @@
 
   <p class="post">
 
-    <span class="stack-icon <%= get_voting_class(@conn, @post) %>" onclick="handleVote(this, '<%= @post.id %>')" title="Kasutajate hääled.">
+    <span class="stack-icon <%= get_voting_class(@conn, @post) %>" onclick="handleVote(this, '<%= @post.id %>')" title="Kasutajad on andnud artiklile <%= length(@post.votes) %> häält.">
       <img class="icon" src="icons/arrow-up.svg"/>
       <sub><%= length(@post.votes) %></sub>
     </span>
