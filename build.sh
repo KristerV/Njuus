@@ -16,10 +16,13 @@ mix local.hex --if-missing --force
 export MIX_ENV=prod
 
 # Fetch deps and compile
-mix deps.get
+mix deps.get --only prod
 # Run an explicit clean to remove any build artifacts from the host
 mix do clean, compile --force
 
+# Update static assets
+npm run deploy --prefix assets
+chmod -R 777 priv/static
 mix phx.digest
 
 # Build the release
