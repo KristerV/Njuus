@@ -45,3 +45,5 @@ erl_crash.dump
 .hex/
 .mix/
 rel/artifacts/
+assets/package-lock.json
+
