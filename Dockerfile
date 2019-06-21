@@ -9,7 +9,7 @@ WORKDIR /opt/build
 
 RUN \
     apt-get update -y && \
-    apt-get install -y git wget vim locales && \
+    apt-get install -y git wget vim locales make && \
     locale-gen en_US.UTF-8 && \
     wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && \
     dpkg -i erlang-solutions_1.0_all.deb && \

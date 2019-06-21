@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+echo "--------------------- Create base image"
+docker build -t elixir-ubuntu:latest .
 echo "--------------------- Compile with docker"
 docker run -v $(pwd):/opt/build --rm -it elixir-ubuntu:latest ./build.sh
 echo "--------------------- SCP to the server"
