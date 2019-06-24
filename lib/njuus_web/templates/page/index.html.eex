@@ -42,6 +42,11 @@
   }
 
   async function handleVote(el, postid) {
+    localStorage.setItem('hasVoted', 'true')
+    if (votingTippy) {
+        votingTippy.forEach(t => t.destroy())
+    }
+
     const isVoted = !el.classList.contains('icon-transparent')
     const body = {
       method: 'POST',
@@ -103,8 +108,11 @@
   }
 
   // Help people understand how voting works
+  let hasVoted = !!localStorage.getItem('hasVoted')
+  let votingTippy
 
-    tippy('.post', {
+  if (!hasVoted) {
+    votingTippy = tippy('.post', {
       trigger: 'click',
       interactive: true,
       content(el) {
@@ -113,4 +121,5 @@
       arrow: false,
       placement: "top-start"
     })
+  }
 </script>
