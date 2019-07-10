@@ -16,7 +16,7 @@ defmodule NjuusWeb.StatsController do
 
     empty_map = Map.new(tracking_dates, &{&1, 0})
 
-    tracking_datemap_unique =
+    tracking_sessdate_date =
       Enum.reduce(trackings, %{}, fn t, acc ->
         Map.put(
           acc,
@@ -24,6 +24,22 @@ defmodule NjuusWeb.StatsController do
           DateTime.to_date(t.inserted_at)
         )
       end)
+
+    tracking_datemap_unique =
+      tracking_sessdate_date
+      |> Enum.reduce(empty_map, fn {_sessid, date}, acc ->
+        Map.update(acc, date, 1, &(&1 + 1))
+      end)
+
+    tracking_returning_sessions =
+      Enum.reduce(trackings, %{}, fn t, acc -> Map.update(acc, t.sessionid, 1, &(&1 + 1)) end)
+      |> Map.to_list()
+      |> Enum.filter(fn {_sessid, count} -> count > 1 end)
+      |> Enum.map(fn {sessid, _count} -> sessid end)
+
+    tracking_returning_datemap =
+      tracking_sessdate_date
+      |> Enum.filter(fn {sessdate, _date} -> Enum.any?(tracking_returning_sessions, fn val -> String.starts_with?(sessdate, val) end) end)
       |> Enum.reduce(empty_map, fn {_sessid, date}, acc ->
         Map.update(acc, date, 1, &(&1 + 1))
       end)
@@ -70,7 +86,8 @@ defmodule NjuusWeb.StatsController do
       cat_count: cat_count,
       day_count: day_count,
       tracking_dates: tracking_dates,
-      tracking_datemap_unique: tracking_datemap_unique
+      tracking_datemap_unique: tracking_datemap_unique,
+      tracking_returning_datemap: tracking_returning_datemap,
     })
   end
 end
