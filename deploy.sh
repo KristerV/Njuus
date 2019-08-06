@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-echo "--------------------- Create base image"
-docker build -t elixir-ubuntu:latest .
 echo "--------------------- Compile with docker"
-docker run -v $(pwd):/opt/build --rm -it elixir-ubuntu:latest ./build.sh
-echo "--------------------- SCP to the server"
-scp -r rel/artifacts/njuus-0.1.0.tar.gz web@68.183.208.25:/home/web/
+docker run -v $(pwd):/opt/build --rm -it elixir-ubuntu:latest ./build-release.sh
+echo "--------------------- rsync to the server"
+rsync -r _build/prod/rel/njuus/* web@njuus.ee:/home/web/njuus/
 echo "--------------------- Extract and restart service"
-# 1. clean out previous files
-# 2. scp and extract
-# 3. chown web:web
-# 4. start service
-ssh root@68.183.208.25 'cd /home/web/ && rm -rf njuus/* && tar -xzf njuus-0.1.0.tar.gz -C njuus && chown -R web:web * && systemctl restart njuus'
+ssh root@njuus.ee 'systemctl restart njuus'
 echo "--------------------- Done"
-ssh -t root@68.183.208.25 'journalctl -n 300 -f -t njuus'
+ssh -t root@njuus.ee 'journalctl -n 300 -f -t njuus'
